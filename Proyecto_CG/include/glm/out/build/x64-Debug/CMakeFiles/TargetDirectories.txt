@@ -1,2 +1,0 @@
-C:/Users/LUIS_FI/Documents/8 SEMESTRE/COMPU GRAFICA/Proyecto_Final/Proyecto_CG/Proyecto_CG/Proyecto_CG/include/glm/out/build/x64-Debug/CMakeFiles/edit_cache.dir
-C:/Users/LUIS_FI/Documents/8 SEMESTRE/COMPU GRAFICA/Proyecto_Final/Proyecto_CG/Proyecto_CG/Proyecto_CG/include/glm/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
