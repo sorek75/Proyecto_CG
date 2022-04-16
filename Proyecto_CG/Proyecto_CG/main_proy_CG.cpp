@@ -271,9 +271,7 @@ int main()
 	Model piso("resources/objects/piso/piso.obj");
 	Model casaV1("resources/objects/CasaV1/CasaV1.obj");
 	Model casaV2("resources/objects/CasaV2/casaV2.obj");
-	Model edificioV1("resources/objects/EdificioV1/edificioV1.obj");
-	Model edificioV2("resources/objects/EdificioV2/edificioV2.obj");
-	
+	Model starbucks("resources/objects/Starbucks/starbucks.obj");
 	
 	
 
@@ -405,16 +403,11 @@ int main()
 		staticShader.setMat4("model", model);
 		casaV2.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-324.0f, 0.3f, -345.0f));
-		model = glm::scale(model, glm::vec3(0.30f));
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-170.0f, 0.2f, -320.0f));
+		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
-		edificioV1.Draw(staticShader);
+		starbucks.Draw(staticShader);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(-52.0f, 0.3f, -348.0f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.30f));
-		staticShader.setMat4("model", model);
-		edificioV2.Draw(staticShader);
 
 
 
