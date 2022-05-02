@@ -40,7 +40,7 @@ GLFWmonitor *monitors;
 void getResolution(void);
 
 // camera
-Camera camera(glm::vec3(0.0f, 10.0f, 90.0f));
+Camera camera(glm::vec3(0.0f, 300.0f, 300.0f));
 float MovementSpeed = 0.1f;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
@@ -269,9 +269,14 @@ int main()
 	// load models
 	// -----------
 	Model piso("resources/objects/piso/piso.obj");
-	Model casaV1("resources/objects/CasaV1/CasaV1.obj");
-	Model casaV2("resources/objects/CasaV2/casaV2.obj");
+	Model encierro_Trex("resources/objects/enc_terres/terrestre.obj");
+	Model encierro_Herb("resources/objects/terrestreH/terrestreH.obj");
 	Model starbucks("resources/objects/Starbucks/starbucks.obj");
+	Model trex("resources/objects/dino2/trex.obj");
+	Model trico("resources/objects/dino3/dino3.obj");
+	Model petera("resources/objects/dino4/dino4.obj");
+	Model raptor("resources/objects/dino1/dino1.obj");
+	Model encierro_vol("resources/objects/enc_volador/enc_volador.obj"); 
 	Model recuerdos("resources/objects/Recuerdos/recuerdos.obj");
 	
 	
@@ -380,30 +385,6 @@ int main()
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
 
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(400.0f, 0.3f, -353.0f));
-		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.35f));
-		staticShader.setMat4("model", model);
-		casaV1.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(346.0f, 0.3f, 394.0f));
-		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.35f));
-		staticShader.setMat4("model", model);
-		casaV1.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(381.0f, 0.3f, 55.0f));
-		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.35f));
-		staticShader.setMat4("model", model);
-		casaV2.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(155.0f, 0.3f, 55.0f));
-		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(0.35f));
-		staticShader.setMat4("model", model);
-		casaV2.Draw(staticShader);
-
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-170.0f, 0.2f, -320.0f));
 		model = glm::scale(model, glm::vec3(50.0f));
 		staticShader.setMat4("model", model);
@@ -414,8 +395,66 @@ int main()
 		staticShader.setMat4("model", model);
 		recuerdos.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		encierro_Trex.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-184.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		encierro_Trex.Draw(staticShader);
 
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-365.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		encierro_Trex.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		encierro_Herb.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(363.0f, 37.0f, -163.0f));
+		model = glm::scale(model, glm::vec3(16.0f));
+		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trex.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-374.0f, 20.0f, 82.0f));
+		model = glm::scale(model, glm::vec3(6.5f));
+		model = glm::rotate(model, glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trico.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(-255.0f, 20.0f, 130.0f));
+		model = glm::scale(model, glm::vec3(6.5f));
+		model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		trico.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(345.0f, 60.0f, 356.0f));
+		model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		petera.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(117.0f, 0.0f, -21.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		staticShader.setMat4("model", model);
+		raptor.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(37.0f, 0.0f, -14.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		raptor.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(54.0f, 0.0f, -150.0f));
+		model = glm::scale(model, glm::vec3(1.5f));
+		model = glm::rotate(model, glm::radians(-160.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		raptor.Draw(staticShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(330.0f, 0.2f, 328.0f));
+		model = glm::scale(model, glm::vec3(30.0f));
+		staticShader.setMat4("model", model);
+		encierro_vol.Draw(staticShader);
 
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
