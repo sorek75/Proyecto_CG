@@ -484,6 +484,18 @@ int main()
 		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(400.0f - movRemy_x, 3.0f, -70.0f));//movS_x, movS_y, movS_z));//
+		model = glm::scale(model, glm::vec3(0.065f));
+		model = glm::rotate(model, glm::radians(260.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		personRun.Draw(animShader);
+
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(364.0f, soldadoFall_y, -190.0f));//movS_x, movS_y, movS_z));
+		model = glm::scale(model, glm::vec3(0.15f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		animShader.setMat4("model", model);
+		soldadoFall.Draw(animShader);
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -588,6 +600,44 @@ int main()
 		peteraAI.Draw(staticShader);
 
 		///////////////////////////////////////////////
+
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Carro
+		// -------------------------------------------------------------------------------------------------------------------------
+		model = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(-185.736f + movAuto_x, 0.0f, -250.228 + movAuto_z));
+		tmp = model = glm::rotate(model, glm::radians(orienta), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		jeep.Draw(staticShader);
+
+		model = glm::translate(tmp, glm::vec3(-11.0f, 6.0f, 19.0f));
+		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(inclinaLlantas), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		rueda.Draw(staticShader);	//Der delantera
+
+		model = glm::translate(tmp, glm::vec3(11.0f, 6.0f, 19.0f));
+		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, glm::radians(inclinaLlantas), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+		staticShader.setMat4("model", model);
+		rueda.Draw(staticShader);	//Izq delantera
+
+		model = glm::translate(tmp, glm::vec3(-11.0f, 6.0f, -20.5f));
+		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		staticShader.setMat4("model", model);
+		rueda.Draw(staticShader);	//Der trasera
+
+		model = glm::translate(tmp, glm::vec3(11.0f, 6.0f, -20.5f));
+		model = glm::rotate(model, glm::radians(giroLlantas), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(15.0f));
+		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		staticShader.setMat4("model", model);
+		rueda.Draw(staticShader);	//Izq trase
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(117.0f, 0.0f, -21.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
