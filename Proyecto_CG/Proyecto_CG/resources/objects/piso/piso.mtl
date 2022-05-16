@@ -12,8 +12,8 @@ newmtl Material__341
 	Kd 0.7608 0.8392 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka Modern_House_3_Texture_3.jpg
-	map_Kd Modern_House_3_Texture_3.jpg
+	map_Ka TexturesCom_Roads0095_1_seamless_S.jpg
+	map_Kd TexturesCom_Roads0095_1_seamless_S.jpg
 
 newmtl Material__316
 	Ns 10.0000
@@ -26,8 +26,8 @@ newmtl Material__316
 	Kd 0.6667 0.9255 0.5882
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka Modern House_01_TEXTURE (5).jpg
-	map_Kd Modern House_01_TEXTURE (5).jpg
+	map_Ka TexturesCom_Grass0052_1_seamless_S.jpg
+	map_Kd TexturesCom_Grass0052_1_seamless_S.jpg
 
 newmtl Material__328
 	Ns 10.0000
@@ -40,5 +40,5 @@ newmtl Material__328
 	Kd 0.5882 0.9608 0.9373
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka TexturesCom_Road_Asphalt1_3x3_1K_albedo.png
-	map_Kd TexturesCom_Road_Asphalt1_3x3_1K_albedo.png
+	map_Ka TexturesCom_Roads0095_1_seamless_S.jpg
+	map_Kd TexturesCom_Roads0095_1_seamless_S.jpg
