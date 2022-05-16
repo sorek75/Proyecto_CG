@@ -1,28 +1,13 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(513,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (Practica1_.vcxproj, Proyecto_Lab_CG.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
   main_proy_CG.cpp
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(621,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(622,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(626,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(627,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(629,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(630,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-D:\GitHub\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(638,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-glfw3.lib(context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(context.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(init.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(init.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(input.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(input.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(monitor.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(monitor.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(vulkan.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(vulkan.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(window.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(window.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_init.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_init.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_joystick.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_joystick.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_monitor.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_monitor.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_time.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_time.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_thread.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_thread.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(win32_window.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(win32_window.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(wgl_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(wgl_context.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(egl_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(egl_context.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-glfw3.lib(osmesa_context.obj) : warning LNK4099: no se encontró PDB 'glfw.pdb' con 'glfw3.lib(osmesa_context.obj)' o en 'D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\glfw.pdb'; se vinculará el objeto sin tener en cuenta información de depuración
-  Proyecto_CG.vcxproj -> D:\GitHub\Proyecto_CG\Proyecto_CG\Debug\Proyecto_CG.exe
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\shader_m.h(44,40): warning C4101: 'e': variable local sin referencia
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\modelAnim.h(104,44): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\include\modelAnim.h(520,24): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(835,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(836,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(840,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(841,16): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(843,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(844,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Proyecto_CG\main_proy_CG.cpp(852,28): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
+  Proyecto_CG.vcxproj -> C:\Users\LUIS_FI\Documents\8 SEMESTRE\COMPU GRAFICA\Proyecto_Final\Proyecto_CG\Proyecto_CG\Debug\Proyecto_CG.exe
