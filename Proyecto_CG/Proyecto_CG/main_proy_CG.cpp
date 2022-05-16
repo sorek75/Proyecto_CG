@@ -70,6 +70,15 @@ bool	animacion = false,
 
 
 //Keyframes (Manipulación y dibujo)
+//petera
+float	peteraX = 345.0f,
+		peteraY = 60.0f,
+		peteraZ = 356.0f,
+		peteraRot =0.0f,
+		alaIRot = 0.0f,
+		alaDRot = 0.0f;
+//
+
 float	posX = 0.0f,
 		posY = 0.0f,
 		posZ = 0.0f,
@@ -274,7 +283,12 @@ int main()
 	Model starbucks("resources/objects/Starbucks/starbucks.obj");
 	Model trex("resources/objects/dino2/trex.obj");
 	Model trico("resources/objects/dino3/dino3.obj");
-	Model petera("resources/objects/dino4/dino4.obj");
+	//Model petera("resources/objects/dino4/dino4.obj");
+	//Petera partes
+	Model peteraAD("resources/objects/dino4/AlaDer/AlaDer.obj");
+	Model peteraAI("resources/objects/dino4/AlaIzq/AlaIzq.obj");
+	Model peteraT("resources/objects/dino4/TorsoDino4/TorsoDino4.obj");
+	//
 	Model raptor("resources/objects/dino1/dino1.obj");
 	Model encierro_vol("resources/objects/enc_volador/enc_volador.obj"); 
 	Model recuerdos("resources/objects/Recuerdos/recuerdos.obj");
@@ -428,11 +442,34 @@ int main()
 		model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		trico.Draw(staticShader);
-
-		model = glm::translate(glm::mat4(1.0f), glm::vec3(345.0f, 60.0f, 356.0f));
-		model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Petera
+		// ------------------------------------------------------------------------------------------------------------------------- 
+		//Torso
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(peteraX, peteraY, peteraZ));
+		tmp = model = glm::rotate(model, glm::radians(peteraRot), glm::vec3(0.0f, 1.0f, 0.0));
+		//model = glm::scale(model, glm::vec3(0.35f));
 		staticShader.setMat4("model", model);
-		petera.Draw(staticShader);
+		peteraT.Draw(staticShader);
+		// coordenadas petera (345.0f, 60.0f, 356.0f));
+		
+		//AlaDer
+		model = glm::translate(tmp, glm::vec3(-0.85f, -0.5f, 2.0f));
+		//model = glm::translate(model, glm::vec3(movS_x, 0.0f, movS_z));
+		model = glm::rotate(model, glm::radians(alaDRot), glm::vec3(0.0f, 0.0f, 1.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		peteraAD.Draw(staticShader);
+
+		//Ala Izq
+		model = glm::translate(tmp, glm::vec3(0.85f, -0.5f, 2.0f));
+		model = glm::rotate(model, glm::radians(alaIRot), glm::vec3(0.0f, 0.0f, 1.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		peteraAI.Draw(staticShader);
+
+		///////////////////////////////////////////////
 
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(117.0f, 0.0f, -21.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
@@ -507,21 +544,25 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	//To Configure Model
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		posZ++;
+		peteraZ++;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		posZ--;
+		peteraZ--;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		posX--;
+		peteraX--;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		posX++;
+		peteraX++;
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		rotRodIzq--;
+		peteraRot--;
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		rotRodIzq++;
-	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
-		giroMonito--;
-	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
-		giroMonito++;
+		peteraRot++;
+	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
+		alaDRot--;
+	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
+		alaDRot++;
+	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
+		alaIRot--;
+	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
+		alaIRot++;
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
