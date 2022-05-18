@@ -160,12 +160,29 @@ float	myVariable = 0.0f;
 
 //Keyframes (Manipulación y dibujo)
 //petera
-float	peteraX = 345.0f,
+float	peteraX = 260.0f,
 		peteraY = 60.0f,
-		peteraZ = 356.0f,
-		peteraRot =0.0f,
-		alaIRot = 0.0f,
-		alaDRot = 0.0f;
+		peteraZ = 398.0f,
+		peteraRot =87.0f,
+		alaIRot = 24.0f,
+		alaDRot = -24.0f,
+
+		peteraXInc = 0.0f,
+		peteraYInc = 0.0f,
+		peteraZInc = 0.0f,
+		peteraRotInc = 0.0f,
+		alaIRotInc = 0.0f,
+		alaDRotInc = 0.0f;
+//raptor
+float	raptorX = 0.0f,
+		raptorY = 0.0f,
+		raptorZ = 0.0f,
+		raptorRot = 0.0f,
+		raptorPDRot = 0.0f,
+		raptorPIRot = 0.0f,
+		raptorCaRot = 0.0f,
+		raptorCoRot = 0.0f;
+
 #define MAX_FRAMES 9
 int i_max_steps = 60;
 int i_curr_steps = 0;
@@ -180,10 +197,26 @@ typedef struct _frame
 
 }FRAME;
 
+typedef struct _framePetera
+{
+	float	peteraX;
+	float	peteraY;
+	float	peteraZ;
+	float	peteraRot;
+	float	alaIRot;
+	float	alaDRot;
+
+}FRAME_Petera;
+
 FRAME KeyFrame[MAX_FRAMES];
-int FrameIndex = 0;			//introducir datos
+int FrameIndex = 6;			//introducir datos
 bool play = false;
 int playIndex = 0;
+
+FRAME_Petera KFPetera[6];
+int FrameIndexPetera = 6;
+bool playPetera = false;
+int playIndexPetera = 0;
 
 void saveFrame(void)
 {
@@ -208,6 +241,14 @@ void resetElements(void)
 
 	rotRodIzq = KeyFrame[0].rotRodIzq;
 	giroMonito = KeyFrame[0].giroMonito;
+	//Petera Reset
+	peteraX = KFPetera[0].peteraX;
+	peteraY = KFPetera[0].peteraY;
+	peteraZ = KFPetera[0].peteraZ;
+
+	peteraRot = KFPetera[0].peteraRot;
+	alaDRot = KFPetera[0].alaDRot;
+	alaIRot = KFPetera[0].alaIRot;
 }
 
 void interpolation(void)
@@ -219,6 +260,14 @@ void interpolation(void)
 	rotInc = (KeyFrame[playIndex + 1].rotRodIzq - KeyFrame[playIndex].rotRodIzq) / i_max_steps;
 	giroMonitoInc = (KeyFrame[playIndex + 1].giroMonito - KeyFrame[playIndex].giroMonito) / i_max_steps;
 
+	//Petera Interpolation
+	peteraXInc = (KFPetera[playIndexPetera + 1].peteraX - KFPetera[playIndexPetera].peteraX) / i_max_steps;
+	peteraYInc = (KFPetera[playIndexPetera + 1].peteraY - KFPetera[playIndexPetera].peteraY) / i_max_steps;
+	peteraZInc = (KFPetera[playIndexPetera + 1].peteraZ - KFPetera[playIndexPetera].peteraZ) / i_max_steps;
+
+	peteraRotInc = (KFPetera[playIndexPetera + 1].peteraRot - KFPetera[playIndexPetera].peteraRot) / i_max_steps;
+	alaDRotInc = (KFPetera[playIndexPetera + 1].alaDRot - KFPetera[playIndexPetera].alaDRot) / i_max_steps;
+	alaIRotInc = (KFPetera[playIndexPetera + 1].alaIRot - KFPetera[playIndexPetera].alaIRot) / i_max_steps;
 }
 
 void animate(void)
@@ -261,7 +310,41 @@ void animate(void)
 			i_curr_steps++;
 		}
 	}
+	//play petera
+	if (playPetera)
+	{
+		if (i_curr_steps >= i_max_steps) //end of animation between frames?
+		{
+			playIndexPetera++;
+			if (playIndexPetera > FrameIndexPetera - 2)	//end of total animation?
+			{
+				std::cout << "Animation ended" << std::endl;
+				//printf("termina anim\n");
+				playIndexPetera = 0;
+				playPetera = false;
+			}
+			else //Next frame interpolations
+			{
+				i_curr_steps = 0; //Reset counter
+								  //Interpolation
+				interpolation();
+			}
+		}
+		else
+		{
+			//Draw animation
+			peteraX += peteraXInc;
+			peteraY += peteraYInc;
+			peteraZ += peteraZInc;
 
+			peteraRot += peteraRotInc;
+			alaDRot += alaDRotInc;
+			alaIRot += alaIRotInc;
+
+			i_curr_steps++;
+		}
+	}
+	// 
 	//Vehículo
 	if (animacion)
 	{
@@ -353,6 +436,7 @@ int main()
 	// -----------
 	Model piso("resources/objects/piso/piso.obj");
 	Model encierro_Trex("resources/objects/enc_terres/terrestre.obj");
+	/*
 	Model encierro_Herb("resources/objects/terrestreH/terrestreH.obj");
 	Model starbucks("resources/objects/Starbucks/starbucks.obj");
 	Model trex("resources/objects/dino2/trex.obj");
@@ -365,26 +449,33 @@ int main()
 	Model arbol7("resources/objects/Arboles/Arbol7/Arbol7.obj");
 	Model mesa("resources/objects/Mesa/mesa.obj");
 	Model banca("resources/objects/Banca/banca.obj");
-	//Model petera("resources/objects/dino4/dino4.obj");
+	*/
 	//Petera partes
 	Model peteraAD("resources/objects/dino4/AlaDer/AlaDer.obj");
 	Model peteraAI("resources/objects/dino4/AlaIzq/AlaIzq.obj");
 	Model peteraT("resources/objects/dino4/TorsoDino4/TorsoDino4.obj");
 	//
-	Model raptor("resources/objects/dino1/dino1.obj");
+	//Raptro partes
+	//Model raptor("resources/objects/dino1/dino1.obj");
+	Model raptorPD("resources/objects/dino1/PataDerDino1/PataDerDino1.obj");
+	Model raptorPI("resources/objects/dino1/PataIzqDino1/PataIzqDino1.obj");
+	Model raptorT("resources/objects/dino1/TorsoDino1/TorsoDino1.obj");
+	Model raptorCa("resources/objects/dino1/CabezaDino1/CabezaDino1.obj");
+	Model raptorCo("resources/objects/dino1/ColaDino1/ColaDino1.obj");
+	//
 	Model encierro_vol("resources/objects/enc_volador/enc_volador.obj"); 
-	Model recuerdos("resources/objects/Recuerdos/recuerdos.obj");
+	//Model recuerdos("resources/objects/Recuerdos/recuerdos.obj");
 
 	//Carro
 	Model jeep("resources/objects/Carro/carro.obj");
 	Model rueda("resources/objects/Carro/rueda.obj");
-
+	/*
 	ModelAnim soldadoFall("resources/objects/SoldierFall/SoldierFall.dae");
 	soldadoFall.initShaders(animShader.ID);
 
 	ModelAnim personRun("resources/objects/PersonRun/PersonRun.dae");
 	personRun.initShaders(animShader.ID);
-	
+	*/
 	
 
 	//Inicialización de KeyFrames
@@ -396,7 +487,48 @@ int main()
 		KeyFrame[i].rotRodIzq = 0;
 		KeyFrame[i].giroMonito = 0;
 	}
+	//cargando KF de Petera
+	KFPetera[0].peteraX = 260;
+	KFPetera[0].peteraY = 60;
+	KFPetera[0].peteraZ = 398;
+	KFPetera[0].peteraRot = 87;
+	KFPetera[0].alaDRot = -24;
+	KFPetera[0].alaIRot = 24;
 
+	KFPetera[1].peteraX = 353;
+	KFPetera[1].peteraY = 60;
+	KFPetera[1].peteraZ = 398;
+	KFPetera[1].peteraRot = 87;
+	KFPetera[1].alaDRot = 24;
+	KFPetera[1].alaIRot = -23;
+
+	KFPetera[2].peteraX = 395;
+	KFPetera[2].peteraY = 60;
+	KFPetera[2].peteraZ = 351;
+	KFPetera[2].peteraRot = 164;
+	KFPetera[2].alaDRot = -35;
+	KFPetera[2].alaIRot = 34;
+
+	KFPetera[3].peteraX = 395;
+	KFPetera[3].peteraY = 60;
+	KFPetera[3].peteraZ = 277;
+	KFPetera[3].peteraRot = 223;
+	KFPetera[3].alaDRot = 25;
+	KFPetera[3].alaIRot = -28;
+
+	KFPetera[4].peteraX = 335;
+	KFPetera[4].peteraY = 60;
+	KFPetera[4].peteraZ = 276;
+	KFPetera[4].peteraRot = 259;
+	KFPetera[4].alaDRot = -34;
+	KFPetera[4].alaIRot = 31;
+
+	KFPetera[5].peteraX = 249;
+	KFPetera[5].peteraY = 60;
+	KFPetera[5].peteraZ = 334;
+	KFPetera[5].peteraRot = 317;
+	KFPetera[5].alaDRot = 37;
+	KFPetera[5].alaIRot = -40;
 	// draw in wireframe
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
@@ -484,7 +616,7 @@ int main()
 		animShader.setVec3("light.specular", 1.0f, 1.0f, 1.0f);
 		animShader.setVec3("light.direction", lightDirection);
 		animShader.setVec3("viewPos", camera.Position);
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(400.0f - movRemy_x, 3.0f, -70.0f));//movS_x, movS_y, movS_z));//
 		model = glm::scale(model, glm::vec3(0.065f));
 		model = glm::rotate(model, glm::radians(260.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -496,13 +628,14 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		animShader.setMat4("model", model);
 		soldadoFall.Draw(animShader);
+		*/
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Escenario
 		// -------------------------------------------------------------------------------------------------------------------------
 		staticShader.use();
 		staticShader.setMat4("projection", projection);
 		staticShader.setMat4("view", view);
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(400.0f, 0.3f, -348.0f));
 		model = glm::scale(model, glm::vec3(0.30f));
 		model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -518,7 +651,7 @@ int main()
 		model = glm::scale(model, glm::vec3(30.0f));
 		staticShader.setMat4("model", model);
 		recuerdos.Draw(staticShader);
-
+		*/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		encierro_Trex.Draw(staticShader);
@@ -530,7 +663,7 @@ int main()
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-365.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		encierro_Trex.Draw(staticShader);
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		encierro_Herb.Draw(staticShader);
@@ -570,7 +703,7 @@ int main()
 		model = glm::rotate(model, glm::radians(-60.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		trico.Draw(staticShader);
-
+		*/
 
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Petera
@@ -598,9 +731,48 @@ int main()
 		//model = glm::scale(model, glm::vec3(0.35f));
 		staticShader.setMat4("model", model);
 		peteraAI.Draw(staticShader);
-
 		///////////////////////////////////////////////
+		// -------------------------------------------------------------------------------------------------------------------------
+		// Raptor
+		// ------------------------------------------------------------------------------------------------------------------------- 
+		//Torso
+		model = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 12.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(raptorX, raptorY, raptorZ));
+		tmp = model = glm::rotate(model, glm::radians(raptorRot), glm::vec3(0.0f, 1.0f, 0.0));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		raptorT.Draw(staticShader);
+		// coordenadas petera (345.0f, 60.0f, 356.0f));
 
+		//PataDer
+		model = glm::translate(tmp, glm::vec3(-2.1f, -0.5f, -2.8f));
+		//model = glm::translate(model, glm::vec3(movS_x, 0.0f, movS_z));
+		model = glm::rotate(model, glm::radians(raptorPDRot), glm::vec3(1.0f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		raptorPD.Draw(staticShader);
+
+		//Pata Izq
+		model = glm::translate(tmp, glm::vec3(2.2f, -0.5f, -2.8f));
+		model = glm::rotate(model, glm::radians(raptorPIRot), glm::vec3(1.0f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		raptorPI.Draw(staticShader);
+
+		//Cabeza
+		model = glm::translate(tmp, glm::vec3(0.0f, 2.0f, 5.5f));
+		model = glm::rotate(model, glm::radians(raptorCaRot), glm::vec3(1.0f, 0.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		raptorCa.Draw(staticShader);
+
+		//Cola
+		model = glm::translate(tmp, glm::vec3(0.0f, 0.0f, -6.5f));
+		model = glm::rotate(model, glm::radians(raptorCoRot), glm::vec3(0.0f, 1.0f, 0.0f));
+		//model = glm::scale(model, glm::vec3(0.35f));
+		staticShader.setMat4("model", model);
+		raptorCo.Draw(staticShader);
+		///////////////////////////////////////////////
 		// -------------------------------------------------------------------------------------------------------------------------
 		// Carro
 		// -------------------------------------------------------------------------------------------------------------------------
@@ -638,7 +810,7 @@ int main()
 		model = glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		rueda.Draw(staticShader);	//Izq trase
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(117.0f, 0.0f, -21.0f));
 		model = glm::scale(model, glm::vec3(1.5f));
 		staticShader.setMat4("model", model);
@@ -655,12 +827,12 @@ int main()
 		model = glm::rotate(model, glm::radians(-160.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		staticShader.setMat4("model", model);
 		raptor.Draw(staticShader);
-
+		*/
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(330.0f, 0.2f, 328.0f));
 		model = glm::scale(model, glm::vec3(30.0f));
 		staticShader.setMat4("model", model);
 		encierro_vol.Draw(staticShader);
-
+		/*
 		model = glm::translate(glm::mat4(1.0f), glm::vec3(-449.0f, 0.0f, -43.0f));
 		//model = glm::rotate(model, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(5.0f));
@@ -756,7 +928,7 @@ int main()
 		model = glm::scale(model, glm::vec3(3.0f));
 		staticShader.setMat4("model", model);
 		arbol7.Draw(staticShader);
-
+		*/
 		model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
 		staticShader.setMat4("model", model);
@@ -808,25 +980,49 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		camera.ProcessKeyboard(RIGHT, (float)deltaTime);
 	//To Configure Model
 	if (glfwGetKey(window, GLFW_KEY_Y) == GLFW_PRESS)
-		peteraZ++;
+		raptorZ++;
 	if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
-		peteraZ--;
+		raptorZ--;
 	if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
-		peteraX--;
+		raptorX--;
 	if (glfwGetKey(window, GLFW_KEY_J) == GLFW_PRESS)
-		peteraX++;
+		raptorX++;
+	if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
+		raptorY--;
+	if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
+		raptorY++;
 	if (glfwGetKey(window, GLFW_KEY_X) == GLFW_PRESS)
-		peteraRot--;
+		raptorRot--;
 	if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
-		peteraRot++;
+		raptorRot++;
 	if (glfwGetKey(window, GLFW_KEY_1) == GLFW_PRESS)
-		alaDRot--;
+		raptorPDRot--;
 	if (glfwGetKey(window, GLFW_KEY_2) == GLFW_PRESS)
-		alaDRot++;
+		raptorPDRot++;
 	if (glfwGetKey(window, GLFW_KEY_3) == GLFW_PRESS)
-		alaIRot--;
+		raptorPIRot--;
 	if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
-		alaIRot++;
+		raptorPIRot++;
+	if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
+		raptorCaRot--;
+	if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
+		raptorCaRot++;
+	if (glfwGetKey(window, GLFW_KEY_V) == GLFW_PRESS)
+		raptorCoRot--;
+	if (glfwGetKey(window, GLFW_KEY_B) == GLFW_PRESS)
+		raptorCoRot++;
+	//mostrar valores de posicion
+	if (glfwGetKey(window, GLFW_KEY_0) == GLFW_PRESS)
+	{
+		std::cout << "raptorX = " << raptorX << std::endl;
+		std::cout << "raptorY = " << raptorY << std::endl;
+		std::cout << "raptorZ = " << raptorZ << std::endl;
+		std::cout << "raptor rot = " << raptorRot << std::endl;
+		std::cout << "raptor Ca rot = " << raptorCaRot << std::endl;
+		std::cout << "raptor Co rot = " << raptorCoRot << std::endl;
+		std::cout << "raptor PD Rot = " << raptorPDRot << std::endl;
+		std::cout << "raptor PI Rot = " << raptorPIRot << std::endl;
+	}
 	if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
 		lightPosition.x++;
 	if (glfwGetKey(window, GLFW_KEY_N) == GLFW_PRESS)
@@ -854,6 +1050,23 @@ void my_input(GLFWwindow *window, int key, int scancode, int action, int mode)
 		{
 			play = false;
 			std::cout << "Not enough Key Frames" << std::endl;
+		}
+		//petera
+		if (playPetera == false && (FrameIndexPetera > 1))
+		{
+			std::cout << "Play animation Petera" << std::endl;
+			resetElements();
+			//First Interpolation				
+			interpolation();
+
+			playPetera = true;
+			playIndexPetera = 0;
+			i_curr_steps = 0;
+		}
+		else
+		{
+			playPetera = false;
+			std::cout << "Not enough Key Frames For Petera" << std::endl;
 		}
 	}
 
